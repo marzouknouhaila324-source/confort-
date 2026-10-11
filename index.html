@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Évaluation du Confort Thermique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">THERMO<span>CONFORT</span></div>
+        <p>Système intelligent d'évaluation du confort thermique</p>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <h1>Évaluation du Confort Thermique</h1>
+            <p>
+                Analysez les conditions de température et d'humidité
+                grâce à un système basé sur la logique floue.
+            </p>
+        </section>
+
+        <section class="dashboard">
+            <div class="left-column">
+                <div class="card input-card">
+                    <h2>Paramètres environnementaux</h2>
+                    <p class="description">
+                        Saisissez les valeurs pour évaluer le niveau de confort.
+                    </p>
+
+                    <div class="field">
+                        <label for="temperature">Température (°C)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="temperature"
+                                   min="0" max="45" value="25">
+                            <span>°C</span>
+                        </div>
+                        <input type="range" id="temperature-range"
+                               min="0" max="45" value="25">
+                        <div class="range-labels">
+                            <span>0 °C</span><span>45 °C</span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="humidite">Humidité relative (%)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="humidite"
+                                   min="0" max="100" value="50">
+                            <span>%</span>
+                        </div>
+                        <input type="range" id="humidite-range"
+                               min="0" max="100" value="50">
+                        <div class="range-labels">
+                            <span>0 %</span><span>100 %</span>
+                        </div>
+                    </div>
+
+                    <button id="evaluer" type="button">
+                        Évaluer le confort
+                    </button>
+
+                    <p class="small-note">
+                        Les résultats sont calculés à partir des règles floues.
+                    </p>
+                </div>
+
+                <div class="card illustration">
+                    <div class="house-picture">
+                        <svg class="house-drawing"
+                             viewBox="0 0 260 190"
+                             xmlns="http://www.w3.org/2000/svg"
+                             role="img"
+                             aria-label="Illustration d'une maison confortable">
+                            <circle cx="210" cy="38" r="20" fill="#FFE8A3"/>
+                            <path d="M25 155 Q130 125 235 155 L235 180 L25 180 Z"
+                                  fill="#DFF3E6"/>
+                            <path d="M48 91 L130 27 L212 91"
+                                  fill="none" stroke="#2C8068"
+                                  stroke-width="10"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M65 86 V160 H195 V86"
+                                  fill="#F5FAF7"
+                                  stroke="#2C8068" stroke-width="5"
+                                  stroke-linejoin="round"/>
+                            <rect x="112" y="112" width="36" height="48"
+                                  rx="3" fill="#C6E7D8"
+                                  stroke="#2C8068" stroke-width="3"/>
+                            <rect x="78" y="101" width="25" height="25"
+                                  rx="3" fill="#D8F0F5"
+                                  stroke="#2C8068" stroke-width="3"/>
+                            <rect x="157" y="101" width="25" height="25"
+                                  rx="3" fill="#D8F0F5"
+                                  stroke="#2C8068" stroke-width="3"/>
+                            <path d="M90 101 V126 M78 113 H103
+                                     M169 101 V126 M157 113 H182"
+                                  stroke="#2C8068" stroke-width="2"/>
+                            <path d="M34 73 Q20 57 35 44
+                                     M224 83 Q240 65 226 51"
+                                  fill="none" stroke="#8BCDB1"
+                                  stroke-width="4" stroke-linecap="round"/>
+                            <path d="M40 145 Q30 133 43 125
+                                     M218 145 Q230 132 218 122"
+                                  fill="none" stroke="#8BCDB1"
+                                  stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="house-caption">
+                        <h3 id="house-title">Un environnement confortable</h3>
+                        <p id="house-message">
+                            Une température agréable et une humidité équilibrée
+                            favorisent un quotidien plus sain.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="card result-card">
+                    <div class="result-heading">
+                        <div>
+                            <h2>Résultat de l'évaluation</h2>
+                            <p class="description">
+                                Niveau de confort thermique estimé
+                            </p>
+                        </div>
+                        <span class="status-dot"></span>
+                    </div>
+
+                    <div class="score-area">
+                        <div class="score-circle" id="score-circle">
+                            <div class="score-content">
+                                <span id="score">75</span>
+                                <small>/100</small>
+                            </div>
+                        </div>
+                        <h3 id="comfort-label">Confort moyen</h3>
+                        <p id="result-description">
+                            Les conditions peuvent être améliorées.
+                        </p>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <h3 class="section-title">Degrés d'appartenance</h3>
+                    <p class="description">
+                        Contribution des catégories floues au résultat.
+                    </p>
+
+                    <div class="membership-item">
+                        <div class="membership-info">
+                            <span>Mauvais</span>
+                            <span id="bad-value">0 %</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill bad-fill"
+                                 id="bad-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="membership-item">
+                        <div class="membership-info">
+                            <span>Moyen</span>
+                            <span id="medium-value">50 %</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill medium-fill"
+                                 id="medium-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="membership-item">
+                        <div class="membership-info">
+                            <span>Bon</span>
+                            <span id="good-value">50 %</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill good-fill"
+                                 id="good-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card advice-card">
+                    <div class="advice-icon">✦</div>
+                    <div>
+                        <h3>Recommandation</h3>
+                        <p id="advice">
+                            Maintenez une température et une humidité adaptées
+                            pour améliorer le confort.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Projet académique — Système d'évaluation par logique floue</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
